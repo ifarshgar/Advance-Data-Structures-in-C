@@ -1,5 +1,5 @@
-#ifndef SEQUENTIAL_SEARCH_H
-#define SEQUENTIAL_SEARCH_H
+#ifndef DATA_STRUCTURES_SEQUENTIAL_SEARCH_H
+#define DATA_STRUCTURES_SEQUENTIAL_SEARCH_H
 
 // Binary search has time complexity of O(log n)
 // The array should have been sorted in the ascending order.

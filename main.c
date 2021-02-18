@@ -10,7 +10,7 @@
 void test_array_lib();
 
 #define SIZE 1000000000   // One Billion
-#define TOFIND 200000000  // Two hundred million
+#define TO_FIND 200000000  // Two hundred million
 int *data;
 
 void test_helper();
@@ -63,7 +63,7 @@ void test_sequential_search_library() {
     printf(".... Test Search Libraries .....\n");
     clock_t start, end;
     start = clock();
-    int result = sequential_search(TOFIND, data, SIZE);
+    int result = sequential_search(TO_FIND, data, SIZE);
     end = clock();
     double elapsed = ((double) (end - start)) / CLOCKS_PER_SEC;
     printf("Sequential search: %f\n", elapsed);
@@ -73,7 +73,7 @@ void test_binary_search_library() {
     printf(".... Test Search Libraries .....\n");
     clock_t start, end;
     start = clock();
-    int result = binary_search(TOFIND, data, SIZE);
+    int result = binary_search(TO_FIND, data, SIZE);
     end = clock();
     double elapsed = ((double) (end - start)) / CLOCKS_PER_SEC;
     printf("Binary search: %f\n", elapsed);
