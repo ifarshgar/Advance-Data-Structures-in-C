@@ -4,7 +4,7 @@
 
 typedef struct BinaryTree BinaryTree;
 struct BinaryTree {
-    char data;
+    int data;
     BinaryTree *left;
     BinaryTree *right;
 };
@@ -19,14 +19,14 @@ enum TraverseType {
 
 BinaryTree * init();
 
-void insert_to_left(char data, BinaryTree *T);
-void insert_to_right(char data, BinaryTree *T);
+void insert_to_left(int data, BinaryTree *T);
+void insert_to_right(int data, BinaryTree *T);
 
 void traverse(BinaryTree *T, TraverseType type);
 void bfs(BinaryTree *T);
-void delete(char data, BinaryTree *T);
+void delete(int data, BinaryTree *T);
 
-void binary_search_tree_insert(char data, BinaryTree *T);
-void binary_search_tree_delete(char data, BinaryTree *T);
+void binary_search_tree_insert(int data, BinaryTree *T);
+void binary_search_tree_delete(int data, BinaryTree *T);
 
 #endif //DATA_STRUCTURES_BINARY_TREE_H

@@ -12,7 +12,7 @@ BinaryTree * init() {
     return T;
 }
 
-void insert_to_left(char data, BinaryTree *T) {
+void insert_to_left(int data, BinaryTree *T) {
     if (T == NULL) {
         T = init();
         T->data = data;
@@ -26,7 +26,7 @@ void insert_to_left(char data, BinaryTree *T) {
     }
 }
 
-void insert_to_right(char data, BinaryTree *T) {
+void insert_to_right(int data, BinaryTree *T) {
     if (T == NULL) {
         T = init();
         T->data = data;
@@ -50,13 +50,19 @@ void traverse(BinaryTree *T, TraverseType type) {
         case Breadth_First_Search:
             bfs(T);
             break;
+        case Depth_First_Search_PreOrder:
+            break;
+        case Depth_First_Search_InOrder:
+            break;
+        case Depth_First_Search_PostOrder:
+            break;
         default:
             break;
     }
 }
 
 void bfs(BinaryTree *T) {
-    
+
 }
 
 //void delete(char data, BinaryTree *T);
