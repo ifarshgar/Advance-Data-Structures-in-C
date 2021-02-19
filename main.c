@@ -8,13 +8,12 @@
 #include "Sequential Search/Sequential_Search.h"
 #include "Queue/Queue.h"
 
-void test_array_lib();
-
 #define SIZE 10000000   // Ten Million
-#define TO_FIND 6715234
+#define TO_FIND 6715234 // a random number
 int *data;
 
 void test_helper();
+void test_array_lib();
 void test_sequential_search_library();
 void test_binary_search_library();
 void test_queue_library();

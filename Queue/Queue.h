@@ -9,13 +9,9 @@ struct Queue {
     struct Queue* next;
 };
 
-//#ifdef _QUEUE_COUNT
-//int _queue_count = 0;
-//#else
 extern int _queue_count;
 extern Queue *_queue_first;
 extern Queue * _queue_last;
-//#endif
 
 Queue* _queue_init();
 void queue_push(int data);
