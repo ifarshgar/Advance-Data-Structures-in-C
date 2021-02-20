@@ -17,16 +17,16 @@ enum TraverseType {
     Depth_First_Search_PostOrder = 4
 };
 
-BinaryTree * init();
+BinaryTree* _binary_tree_init();
 
-void insert_to_left(int data, BinaryTree *T);
-void insert_to_right(int data, BinaryTree *T);
-
-void traverse(BinaryTree *T, TraverseType type);
-void bfs(BinaryTree *T);
-void delete(int data, BinaryTree *T);
+// insertion with respect to the completeness of the tree.
+void binary_tree_insert(int data, BinaryTree **T);
+void delete(int data, BinaryTree **T);
 
 void binary_search_tree_insert(int data, BinaryTree *T);
 void binary_search_tree_delete(int data, BinaryTree *T);
+
+void traverse(BinaryTree *T, TraverseType type);
+void bfs(BinaryTree *T);
 
 #endif //DATA_STRUCTURES_BINARY_TREE_H

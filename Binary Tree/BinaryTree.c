@@ -4,7 +4,7 @@
 
 #include "BinaryTree.h"
 
-BinaryTree * init() {
+BinaryTree * _binary_tree_init() {
     BinaryTree *T = (BinaryTree *) malloc(sizeof(BinaryTree));
     T->data = 0;
     T->left = NULL;
@@ -12,31 +12,27 @@ BinaryTree * init() {
     return T;
 }
 
-void insert_to_left(int data, BinaryTree *T) {
-    if (T == NULL) {
-        T = init();
-        T->data = data;
-    } else {
-        if(T->left == NULL) {
-            T->left = init();
-            T->left->data = data;
-        } else {
-            insert_to_left(data, T->left);
-        }
+void binary_tree_insert(int data, BinaryTree **T) {
+    if(*T == NULL) {
+        *T = _binary_tree_init();
+        (*T)->data = data;
+        return;
     }
-}
 
-void insert_to_right(int data, BinaryTree *T) {
-    if (T == NULL) {
-        T = init();
-        T->data = data;
+    if((*T)->left == NULL) {
+        (*T)->left = _binary_tree_init();
+        (*T)->left->data = data;
+        return;
     } else {
-        if(T->right == NULL) {
-            T->right = init();
-            T->right->data = data;
-        } else {
-            insert_to_right(data, T->right);
-        }
+        binary_tree_insert(data, &(*T)->left);
+    }
+
+    if((*T)->right == NULL) {
+        (*T)->right = _binary_tree_init();
+        (*T)->right->data = data;
+        return;
+    } else {
+        binary_tree_insert(data, &(*T)->right);
     }
 }
 
