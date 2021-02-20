@@ -20,8 +20,8 @@ void test_queue_library();
 
 int main() {
     printf(".... Data Structures .....\n\n");
-    test_array_lib();
 
+    test_array_lib();
     test_helper();
     test_sequential_search_library();
     test_binary_search_library();
@@ -82,17 +82,23 @@ void test_binary_search_library() {
 
 void test_queue_library() {
     printf("\n.... Test Queue Library .....\n");
+    Queue *first = NULL;
+    Queue *last = NULL;
+    int count = 0;
+
     clock_t start, end;
     start = clock();
     for(int i=0; i<100; i++) {
-        queue_push(i);
+        queue_push(i, &first, &last);
+        count++;
     }
     for(int i=0; i<90; i++) {
-        queue_pop();
+        queue_pop(&first, &last);
+        count--;
     }
     end = clock();
     double elapsed = ((double) (end - start)) / CLOCKS_PER_SEC;
     printf("Queue operations: %f s\n", elapsed);
-    printf("Queue size: %d\n", queue_size());
-    queue_print();
+    printf("Queue size: %d - Count: %d\n", queue_size(first), count);
+    queue_print(first);
 }

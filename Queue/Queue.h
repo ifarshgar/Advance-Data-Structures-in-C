@@ -9,14 +9,10 @@ struct Queue {
     struct Queue* next;
 };
 
-extern int _queue_count;
-extern Queue *_queue_first;
-extern Queue * _queue_last;
-
 Queue* _queue_init();
-void queue_push(int data);
-int queue_pop();
-int queue_size();
-void queue_print();
+void queue_push(int data, Queue **first, Queue **last);
+int queue_pop(Queue **first, Queue **last);
+int queue_size(Queue *first);
+void queue_print(Queue *first);
 
 #endif //DATA_STRUCTURES_QUEUE_H

@@ -3,10 +3,6 @@
 #include <stdio.h>
 #include "Queue.h"
 
-int _queue_count = 0;
-Queue *_queue_first = NULL;
-Queue *_queue_last = NULL;
-
 Queue* _queue_init() {
     Queue *q = (Queue *) malloc(sizeof(Queue));
     q->data = 0;
@@ -14,59 +10,67 @@ Queue* _queue_init() {
     return q;
 }
 
-void queue_push(int data) {
-    if(_queue_first == NULL) {
-        _queue_first = _queue_last = _queue_init();
-        _queue_first->data = data;
-        _queue_count++;
+void queue_push(int data, Queue **first, Queue **last) {
+    if(*first == NULL) {
+        *first = *last = _queue_init();
+        (*first)->data = data;
     }
-    else if(_queue_first == _queue_last) {
+    else if((*first)->next == NULL) {
         Queue *q = _queue_init();
         q->data = data;
-        _queue_first->next = q;
-        _queue_last = q;
-        _queue_count++;
-    } else {
+        (*first)->next = q;
+        *last = q;
+    }
+    else {
         Queue *q = _queue_init();
         q->data = data;
-        _queue_last->next = q;
-        _queue_last = q;
-        _queue_count++;
+        (*last)->next = q;
+        *last = q;
     }
 }
 
-int queue_pop() {
-    if(_queue_first == NULL) {
+int queue_pop(Queue **first, Queue **last) {
+    if(*first == NULL) {
         printf("The queue is empty!\n");
         return 0;
     }
 
-    if(_queue_first == _queue_last) {
-        int data = _queue_first->data;
-        _queue_first = _queue_last = NULL;
-        _queue_count--;
+    if((*first)->next == NULL) {
+        int data = (*first)->data;
+        *first = *last = NULL;
         return data;
     }
 
-    Queue *q = _queue_first;
+    Queue *q = *first;
     int data = q->data;
-    _queue_first = _queue_first->next;
-    _queue_count--;
+    *first = (*first)->next;
     free(q);    // After being done with everything, the no longer needed node can be deallocated from the memory.
     return data;
 }
 
-int queue_size() {
-    return _queue_count;
+int queue_size(Queue *first) {
+    if(first == NULL) {
+        printf("The queue is empty!\n");
+        return 0;
+    }
+
+    Queue *q = first;
+    int count = 0;
+    while(q != NULL) {
+        count++;
+        q = q->next;
+    }
+
+    return count;
 }
 
-void queue_print() {
-    if(_queue_first == NULL) {
+void queue_print(Queue *first) {
+    if(first == NULL) {
         printf("The queue is empty!\n");
         return;
     }
 
-    Queue *q = _queue_first;
+    Queue *q = first;
     printf("Queue values:\n[");
     while(q->next != NULL) {
         printf("%d,", q->data);
