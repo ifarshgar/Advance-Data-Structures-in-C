@@ -1,8 +1,8 @@
 #ifndef DATA_STRUCTURES_SEQUENTIAL_SEARCH_H
 #define DATA_STRUCTURES_SEQUENTIAL_SEARCH_H
 
-// Binary search has time complexity of O(log n)
-// The array should have been sorted in the ascending order.
+// Sequential search has time complexity of O(n)
+// Can also deal with unsorted arrays.
 int sequential_search(int a, const int *array, int array_size);
 
 #endif

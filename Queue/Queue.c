@@ -48,9 +48,11 @@ int queue_pop() {
         return data;
     }
 
-    int data = _queue_first->data;
+    Queue *q = _queue_first;
+    int data = q->data;
     _queue_first = _queue_first->next;
     _queue_count--;
+    free(q);    // After being done with everything, the no longer needed node can be deallocated from the memory.
     return data;
 }
 
