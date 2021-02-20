@@ -84,8 +84,6 @@ void test_binary_search_library() {
 
 void test_simple_queue_library() {
     printf("\n.... Test Simple LinkList Queue Library .....\n");
-    Queue *first = NULL;
-    Queue *last = NULL;
     int count = 0;
 
     clock_t start, end;
@@ -98,7 +96,7 @@ void test_simple_queue_library() {
         simple_queue_pop();
         count--;
     }
-    printf("Simple LinkList Queue size: %d - Count: %d\n", queue_size(first), count);
+    printf("Simple LinkList Queue size: %d - Count: %d\n", simple_queue_size(), count);
     simple_queue_print();
 
     end = clock();
