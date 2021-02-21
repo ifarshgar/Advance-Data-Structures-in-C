@@ -5,11 +5,12 @@
 #include "Arrays/arrays.h"
 #include "Binary Search/Binary_Search.h"
 #include "Sequential Search/Sequential_Search.h"
-#include "Simple LinkedList Queue/SimpleQueue.h"
-#include "Generic LinkList Queue/Queue.h"
+#include "Simple Queue/SimpleQueue.h"
+#include "Generic Queue/Queue.h"
+#include "Binary Tree/BinaryTree.h"
 
-#define SIZE 10000000   // Ten Million
-#define TO_FIND 6715234 // a random number
+#define SIZE 100000000   // 100 Million
+#define TO_FIND 63715234 // a random number around 60 Million
 int *data;
 
 void test_helper();
@@ -18,6 +19,7 @@ void test_sequential_search_library();
 void test_binary_search_library();
 void test_simple_queue_library();
 void test_generic_queue_library();
+void test_binary_tree_library();
 
 int main() {
     printf(".... Data Structures .....\n\n");
@@ -28,6 +30,7 @@ int main() {
     test_binary_search_library();
     test_simple_queue_library();
     test_generic_queue_library();
+    test_binary_tree_library();
 
     free(data);
     return 0;
@@ -47,7 +50,7 @@ void test_array_lib() {
 }
 
 void test_helper() {
-    printf("\nPlease wait...");
+    printf("Please wait...");
     clock_t start, end;
     start = clock();
 
@@ -83,7 +86,7 @@ void test_binary_search_library() {
 }
 
 void test_simple_queue_library() {
-    printf("\n.... Test Simple LinkList Queue Library .....\n");
+    printf("\n.... Test Simple Queue Library .....\n");
     int count = 0;
 
     clock_t start, end;
@@ -96,16 +99,16 @@ void test_simple_queue_library() {
         simple_queue_pop();
         count--;
     }
-    printf("Simple LinkList Queue size: %d - Count: %d\n", simple_queue_size(), count);
+    printf("Simple Queue size: %d - Count: %d\n", simple_queue_size(), count);
     simple_queue_print();
 
     end = clock();
     double elapsed = ((double) (end - start)) / CLOCKS_PER_SEC;
-    printf("Simple LinkList Queue operations: %f s\n", elapsed);
+    printf("\nSimple Queue operations: %f s\n", elapsed);
 }
 
 void test_generic_queue_library() {
-    printf("\n.... Test Generic LinkList Queue Library .....\n");
+    printf("\n.... Test Generic Queue Library .....\n");
     Queue *first = NULL;
     Queue *last = NULL;
     int count = 0;
@@ -122,8 +125,8 @@ void test_generic_queue_library() {
         queue_pop(&first, &last);
         count--;
     }
-    printf("Generic LinkList Queue size: %d - Count: %d\n", queue_size(first), count);
-    printf("Generic LinkList Queue Type - Integer\n");
+    printf("Generic Queue size: %d - Count: %d\n", queue_size(first), count);
+    printf("\n- Generic Queue Type - Integer\n");
     queue_print(first, _Integer);
 
 
@@ -133,13 +136,13 @@ void test_generic_queue_library() {
     bt->data = 1;
     void *vvv = bt;
     queue_push(vvv, &first2, &last2, _BinaryTree);
-    printf("Generic LinkList Queue Type - BinaryTree\n");
+    printf("\n- Generic Queue Type - BinaryTree\n");
     queue_print(first2, _BinaryTree);
     BinaryTree *bt2 = _binary_tree_init();
     bt2->data = 2;
     vvv = bt2;
     queue_push(vvv, &first2, &last2, _BinaryTree);
-    printf("Generic LinkList Queue Type - BinaryTree\n");
+    printf("\n- Generic Queue Type - BinaryTree\n");
     queue_print(first2, _BinaryTree);
 
     Queue *first3 = NULL;
@@ -147,12 +150,12 @@ void test_generic_queue_library() {
     char *i = "Element One";
     void *v = i;
     queue_push(v, &first3, &last3, _String);
-    printf("Generic LinkList Queue Type - String\n");
+    printf("\n- Generic Queue Type - String\n");
     queue_print(first3, _String);
     char *j = "Element Two";
     v = j;
     queue_push(v, &first3, &last3, _String);
-    printf("Generic LinkList Queue Type - String\n");
+    printf("\n- Generic Queue Type - String\n");
     queue_print(first3, _String);
 
     Queue *first4 = NULL;
@@ -160,19 +163,49 @@ void test_generic_queue_library() {
     char *ii = "A";
     void *vv = ii;
     queue_push(vv, &first4, &last4, _Char);
-    printf("Generic LinkList Queue Type - Character\n");
+    printf("\n- Generic Queue Type - Character\n");
     queue_print(first4, _Char);
     char *jj = "B";
     vv = jj;
     queue_push(vv, &first4, &last4, _Char);
-    printf("Generic LinkList Queue Type - Character\n");
+    printf("\n- Generic Queue Type - Character\n");
     queue_print(first4, _Char);
     char *kk = "C";
     vv = kk;
     queue_push(vv, &first4, &last4, _Char);
+    printf("\n- Generic Queue Type - Character\n");
     queue_print(first4, _Char);
 
     end = clock();
     double elapsed = ((double) (end - start)) / CLOCKS_PER_SEC;
-    printf("Generic LinkList Queue operations: %f s\n", elapsed);
+    printf("\nGeneric Queue operations: %f s\n", elapsed);
+}
+
+void test_binary_tree_library() {
+    printf("\n.... Test Binary Tree Library .....\n");
+
+    clock_t start, end;
+    start = clock();
+    BinaryTree *root = NULL;
+
+    binary_tree_insert(1, &root);
+    binary_tree_insert(2, &root);
+    binary_tree_insert(3, &root);
+    binary_tree_insert(4, &root);
+    binary_tree_insert(5, &root);
+    binary_tree_insert(6, &root);
+    binary_tree_insert(7, &root);
+
+    printf("-Breadth First Search Traversal:\n");
+    traverse(root, Breadth_First_Search);
+    printf("-Pre-order Depth First Search Traversal:\n");
+    traverse(root, Depth_First_Search_PreOrder);
+    printf("-In-order Depth First Search Traversal:\n");
+    traverse(root, Depth_First_Search_InOrder);
+    printf("-Post-order Depth First Search Traversal:\n");
+    traverse(root, Depth_First_Search_PostOrder);
+
+    end = clock();
+    double elapsed = ((double) (end - start)) / CLOCKS_PER_SEC;
+    printf("\nLinkList Queue operations: %f s\n", elapsed);
 }

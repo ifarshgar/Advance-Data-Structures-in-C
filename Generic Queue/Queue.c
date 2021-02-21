@@ -69,7 +69,6 @@ void * queue_pop(Queue **first, Queue **last) {
 
 int queue_size(Queue *first) {
     if(first == NULL) {
-        printf("The queue is empty!\n");
         return 0;
     }
 
@@ -90,7 +89,7 @@ void queue_print(Queue *first, QueueDataType type) {
     }
 
     Queue *q = first;
-    printf("Generic LinkList Queue values:\n[");
+    printf("Generic Queue values:\n[");
 
     BinaryTree *bt;
     int *i;

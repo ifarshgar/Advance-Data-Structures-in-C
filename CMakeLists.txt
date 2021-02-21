@@ -10,6 +10,6 @@ add_executable(
         "Binary Search/Binary_Search.h" "Binary Search/Binary_Search.c"
         "Sequential Search/Sequential_Search.h" "Sequential Search/Sequential_Search.c"
         "Binary Tree/BinaryTree.h" "Binary Tree/BinaryTree.c"
-        "Generic LinkList Queue/Queue.h" "Generic LinkList Queue/Queue.c"
-        "Simple LinkedList Queue/SimpleQueue.h" "Simple LinkedList Queue/SimpleQueue.c"
+        "Generic Queue/Queue.h" "Generic Queue/Queue.c"
+        "Simple Queue/SimpleQueue.h" "Simple Queue/SimpleQueue.c"
     )

@@ -28,5 +28,8 @@ void binary_search_tree_delete(int data, BinaryTree *T);
 
 void traverse(BinaryTree *T, TraverseType type);
 void bfs(BinaryTree *T);
+void preOrder_dfs(BinaryTree *T);
+void inOrder_dfs(BinaryTree *T);
+void postOrder_dfs(BinaryTree *T);
 
 #endif //DATA_STRUCTURES_BINARY_TREE_H
