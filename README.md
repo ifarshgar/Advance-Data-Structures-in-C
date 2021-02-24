@@ -13,8 +13,6 @@
  Furthermore, the queue is built with LinkedList data structure. 
  Also it is worth mentioning that operations like **push()** and **pop()** has been implemented to have the **time complexity of ```O(1)```**. 
 
-![Queue](https://github.com/ifarshgar/Advance-Data-Structures-in-C/blob/main/Queue-illustration.jpg)
-
  ```C
  struct Queue {
     void *data;
@@ -26,6 +24,10 @@
  the queue can also hold a BinaryTree which has being defined 
  in this project. The description related to the BinaryTree definition
  can be found below. 
+ 
+ 
+![Queue](https://github.com/ifarshgar/Advance-Data-Structures-in-C/blob/main/Queue-illustration.jpg)
+
  
  ### Usage
  ```c
