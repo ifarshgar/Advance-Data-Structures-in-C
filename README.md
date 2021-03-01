@@ -20,8 +20,8 @@
  };
  ```
  This implementation of the queue can deal with the most common
- data types such as int, float, double, char, and string. In addition,
- the queue can also hold a BinaryTree which has being defined 
+ data types such as ```int```, ```float```, ```double```, ```char```, and ```string```. In addition,
+ the queue can also hold a ```BinaryTree``` which has being defined 
  in this project. The description related to the BinaryTree definition
  can be found below. 
  
