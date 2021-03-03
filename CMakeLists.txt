@@ -7,8 +7,8 @@ add_executable(
         DataStructures
         main.c
         Arrays/arrays.h Arrays/arrays.c
-        "Binary Search/Binary_Search.h" "Binary Search/Binary_Search.c"
-        "Sequential Search/Sequential_Search.h" "Sequential Search/Sequential_Search.c"
+        "Searching Algorithms/Binary Search/Binary_Search.h" "Searching Algorithms/Binary Search/Binary_Search.c"
+        "Searching Algorithms/Sequential Search/Sequential_Search.h" "Searching Algorithms/Sequential Search/Sequential_Search.c"
         "Binary Tree/BinaryTree.h" "Binary Tree/BinaryTree.c"
         "Generic Queue/Queue.h" "Generic Queue/Queue.c"
         "Simple Queue/SimpleQueue.h" "Simple Queue/SimpleQueue.c"

@@ -3,8 +3,8 @@
 #include <time.h>
 
 #include "Arrays/arrays.h"
-#include "Binary Search/Binary_Search.h"
-#include "Sequential Search/Sequential_Search.h"
+#include "Searching Algorithms/Binary Search/Binary_Search.h"
+#include "Searching Algorithms/Sequential Search/Sequential_Search.h"
 #include "Simple Queue/SimpleQueue.h"
 #include "Simple Stack/SimpleStack.h"
 #include "Generic Queue/Queue.h"
