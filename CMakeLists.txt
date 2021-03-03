@@ -12,4 +12,5 @@ add_executable(
         "Binary Tree/BinaryTree.h" "Binary Tree/BinaryTree.c"
         "Generic Queue/Queue.h" "Generic Queue/Queue.c"
         "Simple Queue/SimpleQueue.h" "Simple Queue/SimpleQueue.c"
+        "Simple Stack/SimpleStack.h" "Simple Stack/SimpleStack.c"
     )

@@ -6,6 +6,7 @@
 #include "Binary Search/Binary_Search.h"
 #include "Sequential Search/Sequential_Search.h"
 #include "Simple Queue/SimpleQueue.h"
+#include "Simple Stack/SimpleStack.h"
 #include "Generic Queue/Queue.h"
 #include "Binary Tree/BinaryTree.h"
 
@@ -18,6 +19,7 @@ void test_array_lib();
 void test_sequential_search_library();
 void test_binary_search_library();
 void test_simple_queue_library();
+void test_simple_stack_library();
 void test_generic_queue_library();
 void test_binary_tree_library();
 
@@ -29,6 +31,7 @@ int main() {
     test_sequential_search_library();
     test_binary_search_library();
     test_simple_queue_library();
+    test_simple_stack_library();
     test_generic_queue_library();
     test_binary_tree_library();
 
@@ -105,6 +108,28 @@ void test_simple_queue_library() {
     end = clock();
     double elapsed = ((double) (end - start)) / CLOCKS_PER_SEC;
     printf("\nSimple Queue operations: %f s\n", elapsed);
+}
+
+void test_simple_stack_library() {
+    printf("\n.... Test Simple Stack Library .....\n");
+    int count = 0;
+
+    clock_t start, end;
+    start = clock();
+    for (int i = 0; i < 100; i++) {
+        simple_stack_push(i);
+        count++;
+    }
+    for (int i = 0; i < 90; i++) {
+        simple_stack_pop();
+        count--;
+    }
+    printf("Simple Stack size: %d - Count: %d\n", simple_stack_size(), count);
+    simple_stack_print();
+
+    end = clock();
+    double elapsed = ((double) (end - start)) / CLOCKS_PER_SEC;
+    printf("\nSimple Stack operations: %f s\n", elapsed);
 }
 
 void test_generic_queue_library() {
