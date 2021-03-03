@@ -8,6 +8,7 @@
 BinaryTree * _binary_tree_init() {
     BinaryTree *T = (BinaryTree *) malloc(sizeof(BinaryTree));
     T->data = 0;
+    T->root = NULL;
     T->left = NULL;
     T->right = NULL;
     return T;
@@ -33,6 +34,7 @@ void binary_tree_insert(int data, BinaryTree **T) {
             queue_push(bt->left, &first, &last, type);
         } else {
             bt->left = _binary_tree_init();
+            bt->left->root = bt;
             bt->left->data = data;
             break;
         }
@@ -40,13 +42,14 @@ void binary_tree_insert(int data, BinaryTree **T) {
             queue_push(bt->right, &first, &last, type);
         } else {
             bt->right = _binary_tree_init();
+            bt->right->root = bt;
             bt->right->data = data;
             break;
         }
     }
 }
 
-void traverse(BinaryTree *T, TraverseType type) {
+void binary_tree_traverse(BinaryTree *T, TraverseType type) {
     if(T == NULL) {
         printf("The tree is empty!\n");
         return;
@@ -122,7 +125,7 @@ void postOrder_dfs(BinaryTree *T) {
     printf("%d ", T->data);
 }
 
-void delete(int data, BinaryTree **T) {
+void binary_tree_delete(int data, BinaryTree **T) {
     // if the tree is empty
     if(*T == NULL) {
         printf("The tree is empty!\n");
@@ -132,16 +135,18 @@ void delete(int data, BinaryTree **T) {
     Queue *first = NULL;
     Queue *last = NULL;
     QueueDataType type = _BinaryTree;
-    void *v  = (void *) T;
+    void *v  = (void *) *T;
     queue_push(v, &first, &last, type);
+    BinaryTree *deepest = NULL;
+    BinaryTree *target = NULL;
+    int found = 0;
 
     while(queue_size(first) != 0) {
         BinaryTree *bt = queue_pop(&first, &last);
+        deepest = bt;
         if(bt->data == data) {
-            // connect the children of the current node to the parent of the current node and delete the node!
-            // TODO tree has to me modified to hold a link to the parent of the nodes as well.
-            printf("Node<%d> is deleted!\n", data);
-            break;
+            found = 1;
+            target = bt;
         }
         if(bt->left != NULL) {
             queue_push(bt->left, &first, &last, type);
@@ -150,7 +155,31 @@ void delete(int data, BinaryTree **T) {
             queue_push(bt->right, &first, &last, type);
         }
     }
+
+    if(found) {
+        // if tree has only one node!
+        if(binary_tree_size(*T) == 1) {
+            *T = NULL;
+            free(deepest);
+            printf("Node<%d> is deleted!\n", data);
+            return;
+        }
+        target->data = deepest->data;
+        if(deepest->root->left == deepest)
+            deepest->root->left = NULL;
+        else if(deepest->root->right == deepest)
+            deepest->root->right = NULL;
+        free(deepest);
+        printf("Node<%d> is deleted!\n", data);
+    }
+    else
+        printf("Node<%d> was not found!\n", data);
+
 }
 
-//void binary_search_tree_insert(char data, BinaryTree *T);
-//void binary_search_tree_delete(char data, BinaryTree *T);
+int binary_tree_size(BinaryTree *T) {
+    if(T == NULL)
+        return 0;
+
+    return 1 + binary_tree_size(T->left) + binary_tree_size(T->right);
+}

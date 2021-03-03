@@ -5,6 +5,7 @@
 typedef struct BinaryTree BinaryTree;
 struct BinaryTree {
     int data;
+    BinaryTree *root;
     BinaryTree *left;
     BinaryTree *right;
 };
@@ -21,15 +22,14 @@ BinaryTree* _binary_tree_init();
 
 // insertion with respect to the completeness of the tree.
 void binary_tree_insert(int data, BinaryTree **T);
-void delete(int data, BinaryTree **T);
+void binary_tree_delete(int data, BinaryTree **T);
 
-void binary_search_tree_insert(int data, BinaryTree *T);
-void binary_search_tree_delete(int data, BinaryTree *T);
-
-void traverse(BinaryTree *T, TraverseType type);
+void binary_tree_traverse(BinaryTree *T, TraverseType type);
 void bfs(BinaryTree *T);
 void preOrder_dfs(BinaryTree *T);
 void inOrder_dfs(BinaryTree *T);
 void postOrder_dfs(BinaryTree *T);
+
+int binary_tree_size(BinaryTree *T);
 
 #endif //DATA_STRUCTURES_BINARY_TREE_H

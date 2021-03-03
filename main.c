@@ -197,13 +197,32 @@ void test_binary_tree_library() {
     binary_tree_insert(7, &root);
 
     printf("-Breadth First Search Traversal:\n");
-    traverse(root, Breadth_First_Search);
+    binary_tree_traverse(root, Breadth_First_Search);
     printf("-Pre-order Depth First Search Traversal:\n");
-    traverse(root, Depth_First_Search_PreOrder);
+    binary_tree_traverse(root, Depth_First_Search_PreOrder);
     printf("-In-order Depth First Search Traversal:\n");
-    traverse(root, Depth_First_Search_InOrder);
+    binary_tree_traverse(root, Depth_First_Search_InOrder);
     printf("-Post-order Depth First Search Traversal:\n");
-    traverse(root, Depth_First_Search_PostOrder);
+    binary_tree_traverse(root, Depth_First_Search_PostOrder);
+
+    printf("\nDeletion Test\n");
+    BinaryTree *T = root;
+    binary_tree_delete(10, &T);
+    binary_tree_traverse(T, Breadth_First_Search);
+    binary_tree_delete(7, &T);
+    binary_tree_traverse(T, Breadth_First_Search);
+    binary_tree_delete(4, &T);
+    binary_tree_traverse(T, Breadth_First_Search);
+    binary_tree_delete(1, &T);
+    binary_tree_traverse(T, Breadth_First_Search);
+    binary_tree_delete(2, &T);
+    binary_tree_traverse(T, Breadth_First_Search);
+    binary_tree_delete(3, &T);
+    binary_tree_traverse(T, Breadth_First_Search);
+    binary_tree_delete(5, &T);
+    binary_tree_traverse(T, Breadth_First_Search);
+    binary_tree_delete(6, &T);
+    binary_tree_traverse(T, Breadth_First_Search);
 
     end = clock();
     double elapsed = ((double) (end - start)) / CLOCKS_PER_SEC;
