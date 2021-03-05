@@ -143,7 +143,7 @@ void test_generic_queue_library() {
     for(int i=0; i<100; i++) {
         int *j = (int *)malloc(sizeof(int));
         *j = i;
-        queue_push(j, &first, &last, _Integer);
+        queue_push(j, &first, &last);
         count++;
     }
     for(int i=0; i<90; i++) {
@@ -160,13 +160,13 @@ void test_generic_queue_library() {
     BinaryTree *bt = _binary_tree_init();
     bt->data = 1;
     void *vvv = bt;
-    queue_push(vvv, &first2, &last2, _BinaryTree);
+    queue_push(vvv, &first2, &last2);
     printf("\n- Generic Queue Type - BinaryTree\n");
     queue_print(first2, _BinaryTree);
     BinaryTree *bt2 = _binary_tree_init();
     bt2->data = 2;
     vvv = bt2;
-    queue_push(vvv, &first2, &last2, _BinaryTree);
+    queue_push(vvv, &first2, &last2);
     printf("\n- Generic Queue Type - BinaryTree\n");
     queue_print(first2, _BinaryTree);
 
@@ -174,12 +174,12 @@ void test_generic_queue_library() {
     Queue *last3 = NULL;
     char *i = "Element One";
     void *v = i;
-    queue_push(v, &first3, &last3, _String);
+    queue_push(v, &first3, &last3);
     printf("\n- Generic Queue Type - String\n");
     queue_print(first3, _String);
     char *j = "Element Two";
     v = j;
-    queue_push(v, &first3, &last3, _String);
+    queue_push(v, &first3, &last3);
     printf("\n- Generic Queue Type - String\n");
     queue_print(first3, _String);
 
@@ -187,17 +187,17 @@ void test_generic_queue_library() {
     Queue *last4 = NULL;
     char *ii = "A";
     void *vv = ii;
-    queue_push(vv, &first4, &last4, _Char);
+    queue_push(vv, &first4, &last4);
     printf("\n- Generic Queue Type - Character\n");
     queue_print(first4, _Char);
     char *jj = "B";
     vv = jj;
-    queue_push(vv, &first4, &last4, _Char);
+    queue_push(vv, &first4, &last4);
     printf("\n- Generic Queue Type - Character\n");
     queue_print(first4, _Char);
     char *kk = "C";
     vv = kk;
-    queue_push(vv, &first4, &last4, _Char);
+    queue_push(vv, &first4, &last4);
     printf("\n- Generic Queue Type - Character\n");
     queue_print(first4, _Char);
 

@@ -1,0 +1,7 @@
+# ninja log v5
+2	683	636663692	CMakeFiles/DataStructures.dir/Searching_Algorithms/Binary_Search/Binary_Search.c.obj	1078a4134d870441
+18	689	636663692	CMakeFiles/DataStructures.dir/Searching_Algorithms/Sequential_Search/Sequential_Search.c.obj	afb1704d953972bc
+14	690	636663692	CMakeFiles/DataStructures.dir/Simple_Queue/SimpleQueue.c.obj	75094eae26e17c91
+23	691	636663692	CMakeFiles/DataStructures.dir/Binary_Tree/BinaryTree.c.obj	91948dd24cc2b0b
+11	692	636663692	CMakeFiles/DataStructures.dir/Generic_Queue/Queue.c.obj	50aff7a67f6f4d7e
+27	694	636663692	CMakeFiles/DataStructures.dir/Simple_Stack/SimpleStack.c.obj	a7d28d2217255dc8

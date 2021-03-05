@@ -4,44 +4,25 @@
 #include "Queue.h"
 #include "../Binary Tree/BinaryTree.h"
 
-Queue* _queue_init(QueueDataType type) {
+Queue* _queue_init() {
     Queue *q = (Queue *) malloc(sizeof(Queue));
-    switch(type) {
-        case _Integer:
-        case _Float:
-        case _Double:
-            q->data = (void *) 0;
-            break;
-        case _Char:
-            q->data = (void *) ' ';
-            break;
-        case _String:
-            q->data = (void *) "";
-            break;
-        case _BinaryTree:
-            q->data = (void *) _binary_tree_init();
-            break;
-        default:
-            printf("Wrong queue data type!\n");
-            exit(1);
-    }
     q->next = NULL;
     return q;
 }
 
-void queue_push(void *data, Queue **first, Queue **last, QueueDataType type) {
+void queue_push(void *data, Queue **first, Queue **last) {
     if(*first == NULL) {
-        *first = *last = _queue_init(type);
+        *first = *last = _queue_init();
         (*first)->data = data;
     }
     else if((*first)->next == NULL) {
-        Queue *q = _queue_init(type);
+        Queue *q = _queue_init();
         q->data = data;
         (*first)->next = q;
         *last = q;
     }
     else {
-        Queue *q = _queue_init(type);
+        Queue *q = _queue_init();
         q->data = data;
         (*last)->next = q;
         *last = q;

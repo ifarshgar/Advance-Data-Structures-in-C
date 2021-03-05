@@ -24,14 +24,13 @@ void binary_tree_insert(int data, BinaryTree **T) {
     // Else level order traversal should take place to find an empty place.
     Queue *first = NULL;
     Queue *last = NULL;
-    QueueDataType type = _BinaryTree;
     void *v  = (void *) *T;
-    queue_push(v, &first, &last, type);
+    queue_push(v, &first, &last);
 
     while(queue_size(first) != 0) {
         BinaryTree *bt = queue_pop(&first, &last);
         if(bt->left != NULL) {
-            queue_push(bt->left, &first, &last, type);
+            queue_push(bt->left, &first, &last);
         } else {
             bt->left = _binary_tree_init();
             bt->left->root = bt;
@@ -39,7 +38,7 @@ void binary_tree_insert(int data, BinaryTree **T) {
             break;
         }
         if(bt->right != NULL) {
-            queue_push(bt->right, &first, &last, type);
+            queue_push(bt->right, &first, &last);
         } else {
             bt->right = _binary_tree_init();
             bt->right->root = bt;
@@ -82,19 +81,18 @@ void binary_tree_traverse(BinaryTree *T, TraverseType type) {
 void bfs(BinaryTree *T) {
     Queue *first = NULL;
     Queue *last = NULL;
-    QueueDataType type = _BinaryTree;
     void *data  = (void *) T;
-    queue_push(data, &first, &last, type);
+    queue_push(data, &first, &last);
 
     printf("Tree values: ");
     while(queue_size(first) != 0) {
         BinaryTree *bt = queue_pop(&first, &last);
         printf("%d ", bt->data);
         if(bt->left != NULL) {
-            queue_push(bt->left, &first, &last, type);
+            queue_push(bt->left, &first, &last);
         }
         if(bt->right != NULL) {
-            queue_push(bt->right, &first, &last, type);
+            queue_push(bt->right, &first, &last);
         }
     }
 
@@ -134,9 +132,8 @@ void binary_tree_delete(int data, BinaryTree **T) {
 
     Queue *first = NULL;
     Queue *last = NULL;
-    QueueDataType type = _BinaryTree;
     void *v  = (void *) *T;
-    queue_push(v, &first, &last, type);
+    queue_push(v, &first, &last);
     BinaryTree *deepest = NULL;
     BinaryTree *target = NULL;
     int found = 0;
@@ -149,10 +146,10 @@ void binary_tree_delete(int data, BinaryTree **T) {
             target = bt;
         }
         if(bt->left != NULL) {
-            queue_push(bt->left, &first, &last, type);
+            queue_push(bt->left, &first, &last);
         }
         if(bt->right != NULL) {
-            queue_push(bt->right, &first, &last, type);
+            queue_push(bt->right, &first, &last);
         }
     }
 

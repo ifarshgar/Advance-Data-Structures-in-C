@@ -13,4 +13,5 @@ add_executable(
         "Generic Queue/Queue.h" "Generic Queue/Queue.c"
         "Simple Queue/SimpleQueue.h" "Simple Queue/SimpleQueue.c"
         "Simple Stack/SimpleStack.h" "Simple Stack/SimpleStack.c"
+        Vector/Vector.h Vector/Vector.c
     )
