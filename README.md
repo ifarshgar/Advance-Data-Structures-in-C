@@ -37,7 +37,7 @@
  
  // e.g. to insert an integer to the queue:    
  int *i = 3;
- queue_push(i, &first, &last, _Integer);
+ queue_push(i, &first, &last);
  
  // e.g. to retrieve back an integer value and delete it from the queue:
  int *j = queue_pop(&first, &last);
