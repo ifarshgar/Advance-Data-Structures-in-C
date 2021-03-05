@@ -18,8 +18,10 @@ typedef struct Vector Vector;
 struct Vector {
     void *data;
     Vector *next;
+    Vector *prev;
 };
 
+Vector* _vector_init();
 int vector_push(Vector **first, Vector **last, void *v);
 void * vector_pop(Vector **first, Vector **last);
 void * vector_get(Vector *first, Vector *last, int index);
