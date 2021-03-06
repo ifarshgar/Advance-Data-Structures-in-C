@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
 #include "Arrays/arrays.h"
 #include "Searching Algorithms/Binary Search/Binary_Search.h"
@@ -9,6 +10,7 @@
 #include "Simple Stack/SimpleStack.h"
 #include "Generic Queue/Queue.h"
 #include "Binary Tree/BinaryTree.h"
+#include "Vector/Vector.h"
 
 #define SIZE 100000000   // 100 Million
 #define TO_FIND 63715234 // a random number around 60 Million
@@ -26,14 +28,57 @@ void test_binary_tree_library();
 int main() {
     printf(".... Data Structures .....\n\n");
 
-    test_array_lib();
-    test_helper();
-    test_sequential_search_library();
-    test_binary_search_library();
-    test_simple_queue_library();
-    test_simple_stack_library();
+//    test_array_lib();
+//    test_helper();
+//    test_sequential_search_library();
+//    test_binary_search_library();
+//    test_simple_queue_library();
+//    test_simple_stack_library();
     test_generic_queue_library();
-    test_binary_tree_library();
+//    test_binary_tree_library();
+
+//    Vector *first = NULL;
+//    Vector *last = NULL;
+//
+//    void *v = (void *) 10;
+//    int res = vector_push(&first, &last, v);    // Insertion: method one
+//    vector_push(&first, &last, (void*)20);   // Insertion: method two
+//    vector_push(&first, &last, (void*)30);
+//    vector_push(&first, &last, (void*)40);
+//    vector_push(&first, &last, (void*)50);
+//    if(res)
+//        printf("Data inserted into the vector successfully!\n");
+//
+//    int size = vector_size(first);
+//    printf("Vector size: %d\n", size);
+//
+//    int *r;
+//    r = vector_get(first, last, 0);       // retrieving data: method 1
+//    printf("Vector[0]: %d\n", *r);
+
+//    int q = (int) vector_get(first, last, 1);   // retrieving data: method 2
+//    printf("Vector[1] %d\n", q);
+//    q = (int) vector_get(first, last, 2);
+//    printf("Vector[2] %d\n", q);
+//    q = (int) vector_get(first, last, 3);
+//    printf("Vector[3] %d\n", q);
+//    q = (int) vector_get(first, last, 4);
+//    printf("Vector[4] %d\n", q);
+//
+//
+//
+//    q = (int) vector_pop(&first, &last);
+//    printf("vector_pop(): %d\n", q);
+//    q = (int) vector_pop(&first, &last);
+//    printf("vector_pop(): %d\n", q);
+//    q = (int) vector_pop(&first, &last);
+//    printf("vector_pop(): %d\n", q);
+//    q = (int) vector_pop(&first, &last);
+//    printf("vector_pop(): %d\n", q);
+//    q = (int) vector_pop(&first, &last);
+//    printf("vector_pop(): %d\n", q);
+//    q = (int) vector_pop(&first, &last);
+//    printf("vector_pop(): %d\n", q);
 
     free(data);
     return 0;
@@ -134,26 +179,37 @@ void test_simple_stack_library() {
 
 void test_generic_queue_library() {
     printf("\n.... Test Generic Queue Library .....\n");
+
     Queue *first = NULL;
     Queue *last = NULL;
-    int count = 0;
 
-    clock_t start, end;
-    start = clock();
-    for(int i=0; i<100; i++) {
-        int *j = (int *)malloc(sizeof(int));
-        *j = i;
-        queue_push(j, &first, &last);
-        count++;
-    }
-    for(int i=0; i<90; i++) {
-        queue_pop(&first, &last);
-        count--;
-    }
-    printf("Generic Queue size: %d - Count: %d\n", queue_size(first), count);
-    printf("\n- Generic Queue Type - Integer\n");
-    queue_print(first, _Integer);
+    // integer
+    int *n = (int *) malloc(sizeof(int));
+    *n = 1;
+    queue_push(n, &first, &last);
+    int *qi = queue_pop(&first, &last);
+    printf("\n- Generic Queue Type - Integer - %d\n", *qi);
 
+    // float
+    float *f = (float *) malloc(sizeof(float));
+    *f = 3.14f;
+    queue_push(f, &first, &last);
+    float *qf = queue_pop(&first, &last);
+    printf("\n- Generic Queue Type - Float - %.2f\n", *qf);
+
+    // char
+    char *c = (char *) malloc(sizeof(char));
+    *c = 'A';
+    queue_push(c, &first, &last);
+    char *qc = queue_pop(&first, &last);
+    printf("\n- Generic Queue Type - Char - %c\n", *qc);
+
+    // char
+    char *s = (char *) malloc(20 * sizeof(char));
+    strcpy(s, "Aley");
+    queue_push(s, &first, &last);
+    char *qs = queue_pop(&first, &last);
+    printf("\n- Generic Queue Type - String - %s\n", qs);
 
     Queue *first2 = NULL;
     Queue *last2 = NULL;
@@ -167,43 +223,30 @@ void test_generic_queue_library() {
     bt2->data = 2;
     vvv = bt2;
     queue_push(vvv, &first2, &last2);
-    printf("\n- Generic Queue Type - BinaryTree\n");
+    printf("- Generic Queue Type - BinaryTree\n");
     queue_print(first2, _BinaryTree);
 
-    Queue *first3 = NULL;
-    Queue *last3 = NULL;
-    char *i = "Element One";
-    void *v = i;
-    queue_push(v, &first3, &last3);
-    printf("\n- Generic Queue Type - String\n");
-    queue_print(first3, _String);
-    char *j = "Element Two";
-    v = j;
-    queue_push(v, &first3, &last3);
-    printf("\n- Generic Queue Type - String\n");
-    queue_print(first3, _String);
-
-    Queue *first4 = NULL;
-    Queue *last4 = NULL;
-    char *ii = "A";
-    void *vv = ii;
-    queue_push(vv, &first4, &last4);
-    printf("\n- Generic Queue Type - Character\n");
-    queue_print(first4, _Char);
-    char *jj = "B";
-    vv = jj;
-    queue_push(vv, &first4, &last4);
-    printf("\n- Generic Queue Type - Character\n");
-    queue_print(first4, _Char);
-    char *kk = "C";
-    vv = kk;
-    queue_push(vv, &first4, &last4);
-    printf("\n- Generic Queue Type - Character\n");
-    queue_print(first4, _Char);
+    clock_t start, end;
+    start = clock();
+    int count = 0;
+    for(int i=0; i<100; i++) {
+        int *j = (int *)malloc(sizeof(int));
+        *j = i;
+        queue_push(j, &first, &last);
+        count++;
+    }
+    for(int i=0; i<90; i++) {
+        queue_pop(&first, &last);
+        count--;
+    }
+    printf("\n- Generic Queue Type - Integer\n");
+    queue_print(first, _Integer);
+    printf("Generic Queue size: %d\n", queue_size(first));
 
     end = clock();
     double elapsed = ((double) (end - start)) / CLOCKS_PER_SEC;
     printf("\nGeneric Queue operations: %f s\n", elapsed);
+
 }
 
 void test_binary_tree_library() {

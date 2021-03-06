@@ -34,13 +34,34 @@
  // first of all, two nodes should be created to hold the queue data. 
  Queue *first = NULL;
  Queue *last = NULL;
- 
- // e.g. to insert an integer to the queue:    
- int *i = 3;
- queue_push(i, &first, &last);
- 
- // e.g. to retrieve back an integer value and delete it from the queue:
- int *j = queue_pop(&first, &last);
+
+ // integer
+ int *n = (int *) malloc(sizeof(int));
+ *n = 1;
+ queue_push(n, &first, &last);
+ int *qi = queue_pop(&first, &last);
+ printf("\n- Generic Queue Type - Integer - %d\n", *qi);
+
+ // float
+ float *f = (float *) malloc(sizeof(float));
+ *f = 3.14f;
+ queue_push(f, &first, &last);
+ float *qf = queue_pop(&first, &last);
+ printf("\n- Generic Queue Type - Float - %.2f\n", *qf);
+
+ // char
+ char *c = (char *) malloc(sizeof(char));
+ *c = 'A';
+ queue_push(c, &first, &last);
+ char *qc = queue_pop(&first, &last);
+ printf("\n- Generic Queue Type - Char - %c\n", *qc);
+
+ // string
+ char *s = (char *) malloc(20 * sizeof(char));
+ strcpy(s, "Aley");
+ queue_push(s, &first, &last);
+ char *qs = queue_pop(&first, &last);
+ printf("\n- Generic Queue Type - String - %s\n", qs);
  ```
  
  # Simple Queue
