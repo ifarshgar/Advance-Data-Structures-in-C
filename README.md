@@ -133,3 +133,15 @@
  library is not possible. The generic queue implementation takes two pointers representing 
  the head and the tail of the queue and therefore by passing different pointers to the queue
  multiple queues can exist at the same time but this is not the case about the simple queue library. 
+
+ ```C
+ // to insert data to the queue
+ simple_queue_push(data);
+
+ // to retrieve data
+ simple_queue_pop();
+ ```
+
+ As you notice from the code above, using this structure
+ is extremely easy and one does not even need to hold 
+ on to the nodes of the queue to interact with this library. 
