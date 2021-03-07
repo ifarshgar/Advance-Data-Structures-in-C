@@ -139,9 +139,10 @@
  simple_queue_push(data);
 
  // to retrieve data
- simple_queue_pop();
+ int data = simple_queue_pop();
  ```
 
  As you notice from the code above, using this structure
  is extremely easy and one does not even need to hold 
- on to the nodes of the queue to interact with this library. 
+ on to the nodes of the queue to interact with 
+ this library. 
