@@ -81,7 +81,7 @@ void * vector_get(Vector *first, int index) {
 }
 
 //   vector_set modifies the value that a node is holding if the index is with in a correct range.
-void vector_set(Vector **first, Vector **last, void *data, int index) {
+void vector_set(Vector **first, void *data, int index) {
     if(index < 0 || index >=vector_size(*first)) {
         printf("Index is out of bound!\n");
         return;
@@ -91,7 +91,7 @@ void vector_set(Vector **first, Vector **last, void *data, int index) {
     int i = 0;
     while(v != NULL) {
         if(i == index) {
-             v->data = data;
+            v->data = data;
             break;
         }
         i++;
@@ -150,7 +150,7 @@ int vector_delete(Vector **first, Vector **last, int index) {
     }
 
     // if the deletion is supposed to happen at the end of the vector
-    if(index == size) {
+    if(index == size-1) {
         vector_pop(first, last);
         return 1;
     }

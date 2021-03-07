@@ -92,13 +92,13 @@ void test_generic_vector_library() {
     }
 
     printf("1-Size of the vector: %d\n", vector_size(first));
-
     // vector_delete test
     int size = vector_size(first);
     for(int i=0; i<size/2; i++) {
-        *r = vector_delete(&first, &last, 0);
-        if(*r == 1)
-            printf("vector_delete(%d)\n", i);
+        int *deleted = vector_get(first, 0);
+        int p = vector_delete(&first, &last, 0);
+        if(p == 1)
+            printf("vector_delete(%d)\n", *deleted);
     }
 
     printf("2-Size of the vector: %d\n", vector_size(first));
@@ -110,7 +110,6 @@ void test_generic_vector_library() {
     }
 
     printf("3-Size of the vector: %d\n", vector_size(first));
-
     // trying to access the vector while it is empty
     r = vector_pop(&first, &last);
     if(r != NULL)
