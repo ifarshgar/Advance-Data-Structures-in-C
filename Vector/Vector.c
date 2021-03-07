@@ -6,8 +6,8 @@
 
 #include "Vector.h"
 
-//      _vector_init creates and initializes a new instance of the Vector struct.
-Vector* _vector_init() {
+//      vector_init creates and initializes a new instance of the Vector struct.
+Vector* vector_init() {
     Vector *v = (Vector *) malloc(sizeof(Vector));
     v->next = NULL;
     v->prev = NULL;
@@ -17,12 +17,12 @@ Vector* _vector_init() {
 //  vector_push inserts a new node to the end of the vector
 int vector_push(Vector **first, Vector **last, void *data) {
     if(*first == NULL) {
-        *first = *last = _vector_init();
+        *first = *last = vector_init();
         (*first)->data = data;
         return 1;
     }
     else if((*first)->next == NULL) {
-        Vector *v = _vector_init();
+        Vector *v = vector_init();
         v->data = data;
         v->prev = *first;
         *last = v;
@@ -30,7 +30,7 @@ int vector_push(Vector **first, Vector **last, void *data) {
         return 1;
     }
     else {
-        Vector *v = _vector_init();
+        Vector *v = vector_init();
         v->data = data;
         v->prev = *last;
         (*last)->next = v;
@@ -61,7 +61,7 @@ void * vector_pop(Vector **first, Vector **last) {
 }
 
 //     vector_get returns a certain node in the vector
-void * vector_get(Vector *first, Vector *last, int index) {
+void * vector_get(Vector *first, int index) {
     if(index < 0 || index >= vector_size(first)) {
         printf("Index is out of bound!\n");
         return NULL;
@@ -113,7 +113,7 @@ int vector_insert(Vector **first, Vector **last, void *data, int index) {
 
     // if the insertion is supposed to happen at the beginning of the vector
     if(index == 0) {
-        Vector *newNode = _vector_init();
+        Vector *newNode = vector_init();
         newNode->data = data;
         newNode->next = *first;
         (*first)->prev = newNode;
@@ -126,10 +126,11 @@ int vector_insert(Vector **first, Vector **last, void *data, int index) {
     int i = 0;
     while(v != NULL) {
         if(i == index) {
-            Vector *newNode = _vector_init();
+            Vector *newNode = vector_init();
             newNode->data = data;
             newNode->next = v;
             newNode->prev = v->prev;
+            v->prev->next = newNode;
             v->prev = newNode;
             return 1;
         }
@@ -141,35 +142,41 @@ int vector_insert(Vector **first, Vector **last, void *data, int index) {
 }
 
 //  vector_delete deletes a node from the vector at a certain index.
-int vector_delete(Vector **first, Vector **last, void *data, int index) {
+int vector_delete(Vector **first, Vector **last, int index) {
     int size = vector_size(*first);
     if(index < 0 || index >= size) {
         printf("Index is out of bound!\n");
         return 0;
     }
 
-    // if the insertion is supposed to happen at the end of the vector
-    if(index == size-1) {
+    // if the deletion is supposed to happen at the end of the vector
+    if(index == size) {
         vector_pop(first, last);
         return 1;
     }
 
     // if the deletion is supposed to happen at the beginning of the vector
     if(index == 0) {
+        // if there is only one node in the vector
+        if((*first)->next == NULL) {
+            *first = *last = NULL;
+            return 1;
+        }
+
         Vector *v = *first;
-        (*first)->next->prev = NULL;
         *first = (*first)->next;
-        free(v);
+        (*first)->prev = NULL;
+        free(v);    // After being done with everything, the no longer needed node can be deallocated from the memory.
         return 1;
     }
 
-    // otherwise if a node has to inserted in the middle of the vector
+    // otherwise if a node has to be deleted in the middle of the vector
     Vector *v = *first;
     int i = 0;
     while(v != NULL) {
         if(i == index) {
-            v->next->prev = v->prev;
             v->prev->next = v->next;
+            v->next->prev = v->prev;
             free(v);
             return 1;
         }

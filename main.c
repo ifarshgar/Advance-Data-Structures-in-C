@@ -24,64 +24,97 @@ void test_simple_queue_library();
 void test_simple_stack_library();
 void test_generic_queue_library();
 void test_binary_tree_library();
+void test_generic_vector_library();
 
 int main() {
     printf(".... Data Structures .....\n\n");
 
-//    test_array_lib();
-//    test_helper();
-//    test_sequential_search_library();
-//    test_binary_search_library();
-//    test_simple_queue_library();
-//    test_simple_stack_library();
+    test_array_lib();
+    test_helper();
+    test_sequential_search_library();
+    test_binary_search_library();
+    test_simple_queue_library();
+    test_simple_stack_library();
     test_generic_queue_library();
-//    test_binary_tree_library();
-
-//    Vector *first = NULL;
-//    Vector *last = NULL;
-//
-//    void *v = (void *) 10;
-//    int res = vector_push(&first, &last, v);    // Insertion: method one
-//    vector_push(&first, &last, (void*)20);   // Insertion: method two
-//    vector_push(&first, &last, (void*)30);
-//    vector_push(&first, &last, (void*)40);
-//    vector_push(&first, &last, (void*)50);
-//    if(res)
-//        printf("Data inserted into the vector successfully!\n");
-//
-//    int size = vector_size(first);
-//    printf("Vector size: %d\n", size);
-//
-//    int *r;
-//    r = vector_get(first, last, 0);       // retrieving data: method 1
-//    printf("Vector[0]: %d\n", *r);
-
-//    int q = (int) vector_get(first, last, 1);   // retrieving data: method 2
-//    printf("Vector[1] %d\n", q);
-//    q = (int) vector_get(first, last, 2);
-//    printf("Vector[2] %d\n", q);
-//    q = (int) vector_get(first, last, 3);
-//    printf("Vector[3] %d\n", q);
-//    q = (int) vector_get(first, last, 4);
-//    printf("Vector[4] %d\n", q);
-//
-//
-//
-//    q = (int) vector_pop(&first, &last);
-//    printf("vector_pop(): %d\n", q);
-//    q = (int) vector_pop(&first, &last);
-//    printf("vector_pop(): %d\n", q);
-//    q = (int) vector_pop(&first, &last);
-//    printf("vector_pop(): %d\n", q);
-//    q = (int) vector_pop(&first, &last);
-//    printf("vector_pop(): %d\n", q);
-//    q = (int) vector_pop(&first, &last);
-//    printf("vector_pop(): %d\n", q);
-//    q = (int) vector_pop(&first, &last);
-//    printf("vector_pop(): %d\n", q);
+    test_binary_tree_library();
+    test_generic_vector_library();
 
     free(data);
     return 0;
+}
+
+void test_generic_vector_library() {
+    printf("\n.... Test Generic Vector Library .....\n");
+
+    Vector *first = NULL;
+    Vector *last = NULL;
+
+    // vector_push test
+    int *v = (int *) malloc(sizeof(int));
+    *v = 10;
+    vector_push(&first, &last, v);
+    v = (int *) malloc(sizeof(int));
+    *v = 20;
+    vector_push(&first, &last, v);
+    v = (int *) malloc(sizeof(int));
+    *v = 30;
+    vector_push(&first, &last, v);
+    v = (int *) malloc(sizeof(int));
+    *v = 40;
+    vector_push(&first, &last, v);
+    v = (int *) malloc(sizeof(int));
+    *v = 50;
+    int res = vector_push(&first, &last, v);
+    if(res)
+        printf("Data inserted into the vector successfully!\n");
+
+
+    // vector_insert test
+    v = (int *) malloc(sizeof(int));
+    *v = 5;
+    vector_insert(&first, &last, v,0);              // insert at the first position
+    v = (int *) malloc(sizeof(int));
+    *v = 60;
+    vector_insert(&first, &last, v, vector_size(first));  // insert at the last position
+    v = (int *) malloc(sizeof(int));
+    *v = 55;
+    vector_insert(&first, &last, v,vector_size(first)-1); // one to the last position
+    v = (int *) malloc(sizeof(int));
+    *v = 25;
+    vector_insert(&first, &last, v,3);  // insert to the middle
+
+    // vector_get test
+    int *r;
+    for(int i=0; i<vector_size(first); i++) {
+        r = vector_get(first, i);
+        if(r != NULL)
+            printf("Vector[%d]: %d\n", i, *r);
+    }
+
+    printf("1-Size of the vector: %d\n", vector_size(first));
+
+    // vector_delete test
+    int size = vector_size(first);
+    for(int i=0; i<size/2; i++) {
+        *r = vector_delete(&first, &last, 0);
+        if(*r == 1)
+            printf("vector_delete(%d)\n", i);
+    }
+
+    printf("2-Size of the vector: %d\n", vector_size(first));
+    // vector_pop test
+    for(int i=0; i<size/2+1; i++) {
+        r = vector_pop(&first, &last);
+        if(r != NULL)
+            printf("vector_pop(): %d\n", *r);
+    }
+
+    printf("3-Size of the vector: %d\n", vector_size(first));
+
+    // trying to access the vector while it is empty
+    r = vector_pop(&first, &last);
+    if(r != NULL)
+        printf("vector_pop(): %d\n", *r);
 }
 
 void test_array_lib() {
@@ -117,7 +150,7 @@ void test_sequential_search_library() {
     printf("\n.... Test Search Libraries .....\n");
     clock_t start, end;
     start = clock();
-    int result = sequential_search(TO_FIND, data, SIZE);
+    sequential_search(TO_FIND, data, SIZE);
     end = clock();
     double elapsed = ((double) (end - start)) / CLOCKS_PER_SEC;
     printf("Sequential search: %f s\n", elapsed);
@@ -127,7 +160,7 @@ void test_binary_search_library() {
     printf("\n.... Test Search Libraries .....\n");
     clock_t start, end;
     start = clock();
-    int result = binary_search(TO_FIND, data, SIZE);
+    binary_search(TO_FIND, data, SIZE);
     end = clock();
     double elapsed = ((double) (end - start)) / CLOCKS_PER_SEC;
     printf("Binary search: %f s\n", elapsed);

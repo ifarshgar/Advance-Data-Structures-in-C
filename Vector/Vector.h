@@ -7,11 +7,11 @@
 
 typedef enum VectorType VectorType;
 enum VectorType {
-    _INTEGER,
-    _FLOAT,
-    _DOUBLE,
-    _CHAR,
-    _STRING
+    INTEGER,
+    FLOAT,
+    DOUBLE,
+    CHAR,
+    STRING
 };
 
 typedef struct Vector Vector;
@@ -21,16 +21,16 @@ struct Vector {
     Vector *prev;
 };
 
-Vector* _vector_init();
+Vector* vector_init();
 
 int vector_push(Vector **first, Vector **last, void *v);
 void * vector_pop(Vector **first, Vector **last);
 
-void * vector_get(Vector *first, Vector *last, int index);
+void * vector_get(Vector *first, int index);
 void vector_set(Vector **first, Vector **last, void *data, int index);
 
 int vector_insert(Vector **first, Vector **last, void *data, int index);
-int vector_delete(Vector **first, Vector **last, void *data, int index);
+int vector_delete(Vector **first, Vector **last, int index);
 
 int vector_size(Vector *first);
 
