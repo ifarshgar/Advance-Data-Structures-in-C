@@ -49,6 +49,8 @@
  vector_delete(&first, &last, index);
  ```
 
+
+
 ## Generic Queue
  Queue is an abstract data structure. 
  A queue is open at both its ends. One end is always used 
