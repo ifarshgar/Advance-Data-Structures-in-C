@@ -1,5 +1,54 @@
 # Advanced Data Structures in C programming language. 
 
+## Generic Vector
+ Vectors are same as dynamic arrays with the ability to resize itself 
+ automatically when an element is inserted or deleted. 
+ Vector elements can be accessed and traversed easily. 
+ In this generic vector implementation, data can be inserted at 
+ any arbitrary index and thus lets the developer who is using the library 
+ to store data much more flexibly. 
+ Inserting at the begining and ending has the time complexity of O(1).
+ However, insertion takes a linear time if it happens in the middle of the vector, 
+ as the nodes need to be traveresed and the exact insertion location be found. 
+ Also, removing the first and the last element takes O(1) time because no vector traverse is needed. 
+ And, erasing in the middle is again linear in terms of time complexity. 
+
+ With **```void*```** various data types can be handled and manipulated in C language. 
+ This generic vector implementation uses void* to store data and it accepts 
+ literally all kinds of data even pointer to other data structures and structs. 
+ Furthermore, the vector is built with LinkedList data structure and it is worth mentioning that 
+ operations like **push()** and **pop()** has been implemented to have the **time complexity of ```O(1)```**.
+ Also, insertion, deletion, getting, and setting data at any other location within the vector has been made possible 
+ with the most efficient time complexity possible.  
+
+ ```C
+ struct Vector {
+    void *data;
+    Vector *next;
+    Vector *prev;
+ };
+ ```
+
+ ![Queue](https://github.com/ifarshgar/Advance-Data-Structures-in-C/blob/main/vector.png)
+
+ ### Usage
+ ```C
+ // Two nodes are required to interact with the vector as shown below:
+ Vector *first = NULL;
+ Vector *last = NULL;
+ 
+ // to insert an integer to the vector
+ int *v = (int *) malloc(sizeof(int));
+ *v = 10;
+ vector_push(&first, &last, v);
+ 
+ // to retrieve back the data
+ int *data = vector_get(first, index);
+
+ // to delete the data
+ vector_delete(&first, &last, index);
+ ```
+
 ## Generic Queue
  Queue is an abstract data structure. 
  A queue is open at both its ends. One end is always used 
