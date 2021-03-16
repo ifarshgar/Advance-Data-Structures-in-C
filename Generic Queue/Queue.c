@@ -4,7 +4,7 @@
 #include "Queue.h"
 #include "../Binary Tree/BinaryTree.h"
 
-Queue* _queue_init() {
+Queue* queue_init() {
     Queue *q = (Queue *) malloc(sizeof(Queue));
     q->next = NULL;
     return q;
@@ -12,17 +12,17 @@ Queue* _queue_init() {
 
 void queue_push(void *data, Queue **first, Queue **last) {
     if(*first == NULL) {
-        *first = *last = _queue_init();
+        *first = *last = queue_init();
         (*first)->data = data;
     }
     else if((*first)->next == NULL) {
-        Queue *q = _queue_init();
+        Queue *q = queue_init();
         q->data = data;
         (*first)->next = q;
         *last = q;
     }
     else {
-        Queue *q = _queue_init();
+        Queue *q = queue_init();
         q->data = data;
         (*last)->next = q;
         *last = q;
@@ -83,56 +83,36 @@ void queue_print(Queue *first, QueueDataType type) {
             case _Integer:
                 i = (int *)q->data;
                 printf("%d", *i);
-                if(q->next == NULL)
-                    printf("]\n");
-                else
-                    printf(",");
                 break;
             case _Float:
                 f = (float *)q->data;
                 printf("%f,", *f);
-                if(q->next == NULL)
-                    printf("]\n");
-                else
-                    printf(",");
                 break;
             case _Double:
                 d = (double *)q->data;
                 printf("%lf", *d);
-                if(q->next == NULL)
-                    printf("]\n");
-                else
-                    printf(",");
                 break;
             case _Char:
                 c = (char *)q->data;
                 printf("%c", *c);
-                if(q->next == NULL)
-                    printf("]\n");
-                else
-                    printf(",");
                 break;
             case _String:
                 c = (char *)q->data;
                 printf("%s", c);
-                if(q->next == NULL)
-                    printf("]\n");
-                else
-                    printf(",");
                 break;
             case _BinaryTree:
                 bt = (BinaryTree *)q->data;
                 printf("%d", bt->data);
-                if(q->next == NULL)
-                    printf("]\n");
-                else
-                    printf(",");
                 break;
             default:
                 printf("Wrong queue data type!\n");
                 exit(1);
         }
 
+        if(q->next == NULL)
+            printf("]\n");
+        else
+            printf(",");
         q = q->next;
     }
 

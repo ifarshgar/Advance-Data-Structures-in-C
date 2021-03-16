@@ -19,7 +19,7 @@ enum QueueDataType {
     _BinaryTree,
 };
 
-Queue* _queue_init();
+Queue* queue_init();
 void queue_push(void *data, Queue **first, Queue **last);
 void * queue_pop(Queue **first, Queue **last);
 int queue_size(Queue *first);
