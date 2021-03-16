@@ -1,3 +1,0 @@
-C:/Users/Abdolrahman/Documents/C/Advance-Data-Structures-in-C/build/CMakeFiles/DataStructures.dir
-C:/Users/Abdolrahman/Documents/C/Advance-Data-Structures-in-C/build/CMakeFiles/edit_cache.dir
-C:/Users/Abdolrahman/Documents/C/Advance-Data-Structures-in-C/build/CMakeFiles/rebuild_cache.dir
