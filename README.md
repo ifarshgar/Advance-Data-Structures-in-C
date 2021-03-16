@@ -148,3 +148,12 @@
  is extremely easy and one does not even need to hold 
  on to the nodes of the queue to interact with 
  this library. 
+
+
+## License
+
+ Unless otherwise specified, everything in this repository is covered by the following licence:
+
+ [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
+ [View Copyright](LICENSE)
