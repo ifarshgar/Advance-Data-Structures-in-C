@@ -149,6 +149,45 @@
  on to the nodes of the queue to interact with 
  this library. 
 
+# Binary Tree
+ In computer science, a binary tree is a tree data structure in which 
+ each node has at most two children, which are referred to as the 
+ left child and the right child.
+
+ In the implementation of the binary tree, generic queue library played
+ an important role to keep the node data while traversing the nodes of the
+ tree. 
+
+ This implementation also supports all the conventional traversal methods.
+ ```c
+ enum TraverseType {
+    Breadth_First_Search = 1,
+    Depth_First_Search_InOrder = 2,
+    Depth_First_Search_PreOrder = 3,
+    Depth_First_Search_PostOrder = 4
+ };
+ ```
+
+ The library has two types of insertion and deletion. 
+ One of them is with respect to the completeness of 
+ the tree and in order of the way that nodes were added to the tree.
+ 
+ ```c
+ // insertion with respect to the completeness of the tree.
+ void binary_tree_insert(int data, BinaryTree **T);
+ void binary_tree_delete(int data, BinaryTree **T);
+ ``` 
+
+ The other type is binary search tree insertion and deletion.
+ A binary search tree, also called an ordered or sorted binary tree, 
+ is a rooted binary tree whose internal nodes each store a key 
+ greater than all the keys in the node's left subtree and less 
+ than those in its right subtree.
+ 
+ ```c
+ void binary_search_tree_insert(int data, BinaryTree **T);   // binary search tree insertion
+ void binary_search_tree_delete(int data, BinaryTree **T);   // binary search tree deletion
+ ``` 
 
 <br>
 
