@@ -154,7 +154,8 @@
  each node has at most two children, which are referred to as the 
  left child and the right child.
 
- In the implementation of the binary tree, generic queue library played
+ In the implementation of the binary tree, 
+ [Generic Queue Library](Generic%20Queue) played
  an important role to keep the node data while traversing the nodes of the
  tree. 
 
