@@ -18,7 +18,7 @@ enum TraverseType {
     Depth_First_Search_PostOrder = 4
 };
 
-BinaryTree* _binary_tree_init();
+BinaryTree* binary_tree_init();
 
 // insertion with respect to the completeness of the tree.
 void binary_tree_insert(int data, BinaryTree **T);
@@ -31,5 +31,11 @@ void inOrder_dfs(BinaryTree *T);
 void postOrder_dfs(BinaryTree *T);
 
 int binary_tree_size(BinaryTree *T);
+
+// Returns the node that contains the provided data within the binary search tree.
+BinaryTree * getBinaryTreeNode(int data, BinaryTree *T);
+void binary_search_tree_insert(int data, BinaryTree **T);   // binary search tree insertion
+void binary_search_tree_delete(int data, BinaryTree **T);   // binary search tree deletion
+
 
 #endif //DATA_STRUCTURES_BINARY_TREE_H

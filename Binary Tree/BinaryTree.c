@@ -5,7 +5,7 @@
 #include "BinaryTree.h"
 #include "../Generic Queue/Queue.h"
 
-BinaryTree * _binary_tree_init() {
+BinaryTree * binary_tree_init() {
     BinaryTree *T = (BinaryTree *) malloc(sizeof(BinaryTree));
     T->data = 0;
     T->root = NULL;
@@ -17,7 +17,7 @@ BinaryTree * _binary_tree_init() {
 void binary_tree_insert(int data, BinaryTree **T) {
     // if the tree has no element, simply the data can be inserted as root.
     if(*T == NULL) {
-        *T = _binary_tree_init();
+        *T = binary_tree_init();
         (*T)->data = data;
         return;
     }
@@ -32,7 +32,7 @@ void binary_tree_insert(int data, BinaryTree **T) {
         if(bt->left != NULL) {
             queue_push(bt->left, &first, &last);
         } else {
-            bt->left = _binary_tree_init();
+            bt->left = binary_tree_init();
             bt->left->root = bt;
             bt->left->data = data;
             break;
@@ -40,7 +40,7 @@ void binary_tree_insert(int data, BinaryTree **T) {
         if(bt->right != NULL) {
             queue_push(bt->right, &first, &last);
         } else {
-            bt->right = _binary_tree_init();
+            bt->right = binary_tree_init();
             bt->right->root = bt;
             bt->right->data = data;
             break;
@@ -179,4 +179,127 @@ int binary_tree_size(BinaryTree *T) {
         return 0;
 
     return 1 + binary_tree_size(T->left) + binary_tree_size(T->right);
+}
+
+void binary_search_tree_insert(int data, BinaryTree **T) {
+    // if the tree has no element, simply the data can be inserted as root.
+    if(*T == NULL) {
+        *T = binary_tree_init();
+        (*T)->data = data;
+        return;
+    }
+    // Else an empty place should be found according to the passed argument data.
+    Queue *first = NULL;
+    Queue *last = NULL;
+    void *v  = (void *) *T;
+    queue_push(v, &first, &last);
+
+    while(queue_size(first) != 0) {
+        BinaryTree *bt = queue_pop(&first, &last);
+        // if the node is less than the current node value it has to go to the left side of the tree.
+        if(bt->data > data) {
+            if(bt->left == NULL) {
+                bt->left = binary_tree_init();
+                bt->left->root = bt;
+                bt->left->data = data;
+                break;
+            }
+            queue_push(bt->left, &first, &last);
+        }
+        // greater values has to go to the right side of the tree.
+        else {
+            if(bt->right == NULL) {
+                bt->right = binary_tree_init();
+                bt->right->root = bt;
+                bt->right->data = data;
+                break;
+            }
+            queue_push(bt->right, &first, &last);
+        }
+    }
+}
+
+BinaryTree * getBinaryTreeNode(int data, BinaryTree *T) {
+    BinaryTree *bt = T;
+    while(bt != NULL) {
+        if(bt->data == data)
+            return bt;
+        else if(data > bt->data)
+            bt = bt->right;
+        else
+            bt = bt->left;
+    }
+
+    return NULL;
+}
+
+BinaryTree * getBinaryTreeMinimumNode(BinaryTree *T) {
+    while (T->left != NULL) {
+        T = T->left;
+    }
+    return T;
+}
+
+void binary_search_tree_delete_helper(int data, BinaryTree **T, BinaryTree *bt) {
+    // deleting a node with no children
+    if(bt->left == NULL && bt->right == NULL) {
+        if(binary_tree_size(*T) == 1) {
+            *T = NULL;
+            free(*T);
+            return;
+        }
+
+        // setting the child of the current node parent to null
+        if(bt->root->left == bt) {
+            bt->root->left = NULL;
+            free(bt);
+            return;
+        } else {
+            bt->root->right = NULL;
+            free(bt);
+            return;
+        }
+    }
+
+    // deleting a node with two children
+    // (Approach: replacing the current node with the minimum of the right subtree.
+    if (bt->left != NULL && bt->right != NULL)
+    {
+        // find the inorder successor node of bt
+        BinaryTree* successor = getBinaryTreeMinimumNode(bt->right);
+        // store successor value
+        int val = successor->data;
+        // recursively deleting the successor node that will only have at most one child (right child)
+        binary_search_tree_delete(successor->data, T);
+        // copy value of the successor to the current node
+        bt->data = val;
+        return;
+    }
+
+    // deleting a node with one child - (Approach: replacing the node with its child)
+    if(bt->left != NULL) {
+        bt->data = bt->left->data;
+        bt->left = NULL;
+        free(bt->left);
+    }
+    else {
+        bt->data = bt->right->data;
+        bt->right = NULL;
+        free(bt->right);
+    }
+}
+
+void binary_search_tree_delete(int data, BinaryTree **T) {
+    if (*T == NULL) {
+        printf("The tree is empty!\n");
+        return;
+    }
+
+    BinaryTree *bt = getBinaryTreeNode(data, *T);
+    if (bt == NULL) {
+        printf("Data node not found!\n");
+        return;
+    }
+
+    binary_search_tree_delete_helper(data, T, bt);
 }

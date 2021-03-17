@@ -24,6 +24,7 @@ void test_simple_queue_library();
 void test_simple_stack_library();
 void test_generic_queue_library();
 void test_binary_tree_library();
+void test_binary_search_tree_library();
 void test_generic_vector_library();
 
 int main() {
@@ -37,6 +38,7 @@ int main() {
     test_simple_stack_library();
     test_generic_queue_library();
     test_binary_tree_library();
+    test_binary_search_tree_library();
     test_generic_vector_library();
 
     free(data);
@@ -245,13 +247,13 @@ void test_generic_queue_library() {
 
     Queue *first2 = NULL;
     Queue *last2 = NULL;
-    BinaryTree *bt = _binary_tree_init();
+    BinaryTree *bt = binary_tree_init();
     bt->data = 1;
     void *vvv = bt;
     queue_push(vvv, &first2, &last2);
     printf("\n- Generic Queue Type - BinaryTree\n");
     queue_print(first2, _BinaryTree);
-    BinaryTree *bt2 = _binary_tree_init();
+    BinaryTree *bt2 = binary_tree_init();
     bt2->data = 2;
     vvv = bt2;
     queue_push(vvv, &first2, &last2);
@@ -323,6 +325,47 @@ void test_binary_tree_library() {
     binary_tree_traverse(T, Breadth_First_Search);
     binary_tree_delete(6, &T);
     binary_tree_traverse(T, Breadth_First_Search);
+
+    end = clock();
+    double elapsed = ((double) (end - start)) / CLOCKS_PER_SEC;
+    printf("\nLinkList Queue operations: %f s\n", elapsed);
+}
+
+void test_binary_search_tree_library() {
+    printf("\n.... Test Binary Search Tree Library .....\n");
+
+    clock_t start, end;
+    start = clock();
+    BinaryTree *root = NULL;
+
+    binary_search_tree_insert(30, &root);
+    binary_search_tree_insert(15, &root);
+    binary_search_tree_insert(20, &root);
+    binary_search_tree_insert(10, &root);
+    binary_search_tree_insert(21, &root);
+    binary_search_tree_insert(35, &root);
+    binary_search_tree_insert(40, &root);
+    binary_search_tree_insert(32, &root);
+    binary_search_tree_insert(18, &root);
+
+    printf("-In-order Depth First Search Traversal:\n");
+    binary_tree_traverse(root, Depth_First_Search_InOrder);
+
+    printf("\nDeletion Test\n");
+    BinaryTree *T = root;
+    binary_search_tree_delete(30, &T);
+    printf("Node<%d> is deleted!\n", 30);
+    binary_tree_traverse(root, Depth_First_Search_InOrder);
+    binary_search_tree_delete(20, &T);
+    printf("Node<%d> is deleted!\n", 20);
+    binary_tree_traverse(root, Depth_First_Search_InOrder);
+    binary_search_tree_delete(40, &T);
+    printf("Node<%d> is deleted!\n", 40);
+    binary_tree_traverse(root, Depth_First_Search_InOrder);
+    binary_search_tree_delete(15, &T);
+    printf("Node<%d> is deleted!\n", 15);
+    binary_tree_traverse(root, Depth_First_Search_InOrder);
+
 
     end = clock();
     double elapsed = ((double) (end - start)) / CLOCKS_PER_SEC;
