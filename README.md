@@ -30,7 +30,7 @@
  ```
 
  <!-- ![Queue](https://github.com/ifarshgar/Advance-Data-Structures-in-C/blob/main/vector.png) -->
- <img src="https://github.com/ifarshgar/Advance-Data-Structures-in-C/blob/main/vector.png" alt="vector image" class="inline"/>
+ <img src="vector.png" alt="vector image" class="inline"/>
 
 
  ### Usage
