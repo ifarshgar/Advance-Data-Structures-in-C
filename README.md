@@ -79,7 +79,8 @@
  can be found below. 
  
  
-![Queue](https://github.com/ifarshgar/Advance-Data-Structures-in-C/blob/main/Queue-illustration.jpg)
+<!-- ![Queue](https://github.com/ifarshgar/Advance-Data-Structures-in-C/blob/main/Queue-illustration.jpg) -->
+<img src="Queue-illustration.jpg" alt="vector image" class="inline"/>
 
  
  ### Usage
